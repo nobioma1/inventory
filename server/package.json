@@ -1,0 +1,8 @@
+{
+  "name": "inventory",
+  "version": "1.0.0",
+  "description": "Backend for inventory app",
+  "main": "index.js",
+  "author": "Noble Obioma",
+  "license": "MIT"
+}
