@@ -1,5 +1,5 @@
-import React, { Component } from '../../../node_modules/react';
-import { Input, Menu } from '../../../node_modules/semantic-ui-react';
+import React, { Component } from 'react';
+import { Input, Menu } from 'semantic-ui-react';
 
 export default class SearchBar extends Component {
   state = { activeItem: 'all' };

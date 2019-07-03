@@ -1,6 +1,6 @@
-import React, { Component } from '../../../node_modules/react';
-import { Button, Dropdown, Form, Container } from '../../../node_modules/semantic-ui-react';
-import { connect } from '../../../node_modules/react-redux/lib';
+import React, { Component } from 'react';
+import { Button, Dropdown, Form, Container } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 
 class InventoryForm extends Component {
   state = {

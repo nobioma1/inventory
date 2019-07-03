@@ -1,5 +1,5 @@
-import React, { Component } from '../../../node_modules/react';
-import { Header } from '../../../node_modules/semantic-ui-react';
+import React, { Component } from 'react';
+import { Header } from 'semantic-ui-react';
 import InventoryForm from '../InventoryForm';
 import InventoryList from '../InventoryList';
 

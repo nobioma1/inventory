@@ -1,6 +1,6 @@
-import React from '../../../node_modules/react';
-import { BrowserRouter as Router, Route } from '../../../node_modules/react-router-dom';
-import { Container } from '../../../node_modules/semantic-ui-react';
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Container } from 'semantic-ui-react';
 
 import routes from '../../consts/routes';
 import Login from '../Login';

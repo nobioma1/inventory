@@ -1,5 +1,5 @@
-import React from '../../../node_modules/react';
-import { Button, Header, Form } from '../../../node_modules/semantic-ui-react';
+import React from 'react';
+import { Button, Header, Form } from 'semantic-ui-react';
 
 const SignUp = () => (
   <Form>

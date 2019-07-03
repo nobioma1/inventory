@@ -1,6 +1,6 @@
-import React, { Component } from '../../../node_modules/react';
-import { Menu } from '../../../node_modules/semantic-ui-react';
-import { connect } from '../../../node_modules/react-redux/lib';
+import React, { Component } from 'react';
+import { Menu } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 
 import InventoryList from '../InventoryList';
 import SearchBar from '../SearchBar';
@@ -37,10 +37,10 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = ({ inventoryReducer }) => {
+const mapStateToProps = ({ inventory }) => {
   return {
-    inventories: inventoryReducer.inventory,
-    categories: inventoryReducer.category,
+    inventories: inventory.inventory,
+    categories: inventory.category,
   };
 };
 

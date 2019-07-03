@@ -1,11 +1,11 @@
-import React from '../node_modules/react';
-import ReactDOM from '../node_modules/react-dom';
-import { Provider } from '../node_modules/react-redux/lib';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
 import 'semantic-ui-css/semantic.min.css';
-import App from './client/src/components/App';
+import App from './src/components/App';
 import * as serviceWorker from './serviceWorker';
-import store from './store';
+import store from './src/store';
 
 ReactDOM.render(
   <Provider store={store}>

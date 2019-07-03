@@ -1,5 +1,5 @@
-import React from '../../../node_modules/react';
-import { Button, Checkbox, Form, Header } from '../../../node_modules/semantic-ui-react';
+import React from 'react';
+import { Button, Checkbox, Form, Header } from 'semantic-ui-react';
 
 const Login = () => (
   <Form>

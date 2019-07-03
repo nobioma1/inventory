@@ -1,5 +1,5 @@
-import React from '../../../node_modules/react';
-import { Card, Message, Icon } from '../../../node_modules/semantic-ui-react';
+import React from 'react';
+import { Card, Message, Icon } from 'semantic-ui-react';
 
 const InventoryList = props => {
   const { inventories } = props;
