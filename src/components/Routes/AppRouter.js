@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch } from 'react-router-dom';
+import { Switch, Redirect, Route } from 'react-router-dom';
 
 import * as routes from './routes';
 import SignIn from '../auth/SignIn';
@@ -14,7 +14,7 @@ const AppRouter = () => {
       <AuthRoute exact path={routes.SIGNIN} component={SignIn} />
       <AuthRoute path={routes.SIGNUP} component={SignUp} />
       <PrivateRoute path={routes.DASHBOARD} component={Dashboard} />
-      {/* <Route render={() => <Redirect to={routes.SIGNIN} />} /> */}
+      <Route render={() => <Redirect to={routes.SIGNIN} />} /> 
     </Switch>
   );
 };
