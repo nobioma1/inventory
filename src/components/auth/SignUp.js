@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -8,11 +8,12 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
 import { signUp } from '../../actions/auth';
-import routes from '../../consts/routes';
+import * as routes from '../Routes/routes';
 import { useStyles } from './authStyles';
+import Header from '../Header';
 
 const SignUp = props => {
-  const { auth, authError, signUp } = props;
+  const { authError, signUp } = props;
   const classes = useStyles();
 
   const [firstName, setFirstName] = useState('');
@@ -25,10 +26,9 @@ const SignUp = props => {
     signUp({ firstName, lastName, email, password });
   };
 
-  if (auth.uid) return <Redirect to={routes.home} />;
-
   return (
     <Container component="main" maxWidth="xs">
+      <Header />
       <div className={classes.paper}>
         <Typography component="h1" variant="h6">
           Sign up
@@ -96,7 +96,7 @@ const SignUp = props => {
           </Button>
           <Grid container justify="center">
             <Grid item>
-              <Link to={routes.signIn} className={classes.link} variant="body2">
+              <Link to={routes.SIGNIN} className={classes.link} variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>
@@ -109,8 +109,7 @@ const SignUp = props => {
 
 const mapStateToProps = state => {
   return {
-    auth: state.firebase.auth,
-    authError: state.auth.authError,
+    authError: state.auth.error,
   };
 };
 
