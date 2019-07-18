@@ -1,32 +1,13 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { firestoreConnect } from 'react-redux-firebase';
-import { compose } from 'redux';
-import { Redirect } from 'react-router-dom';
+import React from 'react';
+import Grid from '@material-ui/core/Grid';
+import Recent from '../Recent';
 
-import Recent from './Recent';
-import ProductList from '../Inventory/ProductList';
-import routes from '../../consts/routes';
-
-const Home = props => {
-  const { products, auth } = props;
-  if (!auth.uid) return <Redirect to={routes.signIn} />;
-
+const Home = () => {
   return (
-    <div>
-      <ProductList products={products} />
-    </div>
+    <Grid container spacing={3}>
+      <Recent />
+    </Grid>
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    products: state.firestore.ordered.products,
-    auth: state.firebase.auth,
-  };
-};
-
-export default compose(
-  connect(mapStateToProps),
-  firestoreConnect([{ collection: 'products' }]),
-)(Home);
+export default Home;
