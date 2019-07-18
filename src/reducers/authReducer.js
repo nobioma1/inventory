@@ -16,11 +16,11 @@ const authReducer = (state = initialState, action) => {
     case START_AUTH_ACTION:
       return { ...state, error: null, isLoading: true };
     case LOGIN_SUCCESS:
-      return { ...state, isLoading: false };
+      return { ...state, error: null, isLoading: false };
     case SIGNOUT_SUCCESS:
-      return { ...state, isLoading: false };
+      return { ...state, error: null, isLoading: false };
     case SIGNUP_SUCCESS:
-      return { ...state, isLoading: false };
+      return { ...state, error: null, isLoading: false };
     case AUTH_ERROR:
       return { ...state, isLoading: false, error: action.payload };
     default:

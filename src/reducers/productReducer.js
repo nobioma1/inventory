@@ -18,15 +18,15 @@ const productReducer = (state = initialState, action) => {
     case START_PRODUCT_ACTION:
       return { ...state, error: null, isLoading: true };
     case ADD_PRODUCT_SUCCESS:
-      return { ...state, isLoading: false };
+      return { ...state, error: null, isLoading: false };
     case GET_PRODUCT_SUCCESS:
-      return { ...state, isLoading: false, product: action.payload };
+      return { ...state, error: null, isLoading: false, product: action.payload };
     case UPDATE_PRODUCT_SUCCESS:
-      return { ...state, isLoading: false };
+      return { ...state, error: null, isLoading: false };
     case DELETE_PRODUCT_SUCCESS:
-      return { ...state, isLoading: false };
+      return { ...state, error: null, isLoading: false };
     case REMOVE_CATEGORY_SUCCESS:
-      return { ...state, isLoading: false };
+      return { ...state, error: null, isLoading: false };
     case ERROR:
       return { ...state, isLoading: false, error: action.payload };
     default:
