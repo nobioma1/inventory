@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-import routes from './routes';
+import { SIGNIN } from './routes';
 
 const PrivateRoute = props => {
   const { auth, component: Component, ...rest } = props;
@@ -11,15 +11,14 @@ const PrivateRoute = props => {
       {...rest}
       render={props => {
         if (!auth.uid) {
-          return <Redirect to={routes.signIn} />;
-        } 
-        
+          return <Redirect to={SIGNIN} />;
+        }
+
         return <Component {...props} />;
       }}
     />
   );
 };
-
 
 const mapStateToProps = state => {
   return {
