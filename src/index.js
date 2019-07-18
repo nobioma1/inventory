@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { reduxFirestore, getFirestore } from 'redux-firestore';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
@@ -28,9 +29,12 @@ const store = createStore(
 
 store.firebaseAuthIsReady.then(() => {
   ReactDOM.render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
+    <Router>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </Router>,
+
     document.getElementById('root'),
   );
   registerServiceWorker();
