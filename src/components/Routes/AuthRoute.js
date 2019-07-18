@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-import routes from './routes';
+import {HOME} from './routes';
 
 const AuthRoute = props => {
   const { auth, component: Component, ...rest } = props;
@@ -11,7 +11,7 @@ const AuthRoute = props => {
       {...rest}
       render={props => {
         if (auth.uid) {
-          return <Redirect to={routes.home} />;
+          return <Redirect to={HOME} />;
         } 
         
         return <Component {...props} />;
