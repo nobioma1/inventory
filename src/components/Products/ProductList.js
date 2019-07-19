@@ -11,6 +11,7 @@ import { removeCategory } from '../../actions/product';
 import Box from '@material-ui/core/Box';
 import Title from '../Title';
 import ProductCard from './ProductCard';
+import Empty from '../Empty';
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -63,9 +64,13 @@ const ProductList = ({ categoryProducts, match, history, removeCategory }) => {
       </Button>
 
       <Box display="flex" flexWrap="wrap">
-        {categoryProducts.map(product => (
-          <ProductCard key={product.id} product={product} history={history} />
-        ))}
+        {categoryProducts.length > 0 ? (
+          categoryProducts.map(product => (
+            <ProductCard key={product.id} product={product} history={history} />
+          ))
+        ) : (
+          <Empty />
+        )}
       </Box>
     </div>
   );

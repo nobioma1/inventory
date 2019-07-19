@@ -15,9 +15,6 @@ const AddProduct = props => {
   const category = state ? state.category : null;
 
   const addProduct = product => {
-    if (category) {
-      product.category = category;
-    }
     createProduct(product).then(res => {
       if (res) {
         history.push(`${DASHBOARD}/${product.category}`);

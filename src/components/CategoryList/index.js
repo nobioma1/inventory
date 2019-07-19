@@ -4,6 +4,7 @@ import Box from '@material-ui/core/Box';
 
 import Category from './Category';
 import Title from '../Title';
+import Empty from '../Empty';
 
 const CategoryList = props => {
   const { categories } = props;
@@ -11,10 +12,14 @@ const CategoryList = props => {
     <React.Fragment>
       <Title title="Categories" />
       <Box display="flex" flexWrap="wrap">
-        {categories &&
+        {categories && 
+          categories.length > 0 ? (
           categories.map(category => (
             <Category key={category} category={category} />
-          ))}
+          ))
+        ) : (
+          <Empty />
+        )}
       </Box>
     </React.Fragment>
   );

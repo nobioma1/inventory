@@ -9,6 +9,8 @@ import Ballot from '@material-ui/icons/Ballot';
 import LibraryAdd from '@material-ui/icons/LibraryAdd';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import Search from '@material-ui/icons/Search';
+
 import * as routes from '../Routes/routes';
 
 const link = { textDecoration: 'none', color: 'initial' };
@@ -37,6 +39,14 @@ export const mainNavItems = (
           <Ballot />
         </ListItemIcon>
         <ListItemText primary="View Categories" />
+      </ListItem>
+    </Link>
+    <Link to={routes.SEARCH} style={link}>
+      <ListItem button>
+        <ListItemIcon>
+          <Search />
+        </ListItemIcon>
+        <ListItemText primary="Search" />
       </ListItem>
     </Link>
     <ListItem button>

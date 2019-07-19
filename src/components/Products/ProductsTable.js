@@ -10,6 +10,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Launch from '@material-ui/icons/Launch';
 import { Link } from 'react-router-dom';
+
 import { DASHBOARD } from '../Routes/routes';
 
 const useStyles = makeStyles(theme => ({
@@ -48,7 +49,7 @@ const ProductsTable = props => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {products &&
+            {products && products.length > 0 ? (
               products.map(product => (
                 <TableRow key={product.id}>
                   <TableCell>
@@ -68,7 +69,12 @@ const ProductsTable = props => {
                   <TableCell>{product.serial}</TableCell>
                   <TableCell>{product.amount}</TableCell>
                 </TableRow>
-              ))}
+              ))
+            ) : (
+              <TableRow>
+                <TableCell>There are no Recent Items</TableCell>
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </Paper>
