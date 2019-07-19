@@ -17,6 +17,8 @@ const ProductForm = props => {
     category: '',
   });
 
+  const [error, setError] = useState('');
+
   useEffect(() => {
     if (productById) {
       setProduct(prev => ({
@@ -29,6 +31,17 @@ const ProductForm = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    const { name, model, serial, category } = product;
+    const formIsValid =
+      name.trim() && model.trim() && serial.trim() && category.trim();
+    if (formIsValid) {
+      setError('');
+      return chooseFormAction();
+    }
+    return setError('All Form Fields are Required');
+  };
+
+  const chooseFormAction = () => {
     if (!props.update) {
       addProduct(product);
     } else {
@@ -45,6 +58,7 @@ const ProductForm = props => {
   return (
     <Container component="main" maxWidth="xs">
       <form className={classes.form} onSubmit={handleSubmit} noValidate>
+        {error && <p>{error}</p>}
         <TextField
           variant="outlined"
           margin="normal"
