@@ -29,8 +29,11 @@ const ProductList = ({ categoryProducts, match, history, removeCategory }) => {
   } = match;
 
   const deleteCategory = category => {
-    removeCategory(category);
-    history.push(routes.CATEGORYLIST);
+    removeCategory(category).then(res => {
+      if (res) {
+        history.push(routes.CATEGORYLIST);
+      }
+    });
   };
 
   return (

@@ -4,6 +4,8 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import LinearProgress from '@material-ui/core/LinearProgress';
+
 import Navigation from './Navigation';
 import ProductRouter from '../Routes/ProductRouter';
 
@@ -25,12 +27,14 @@ const useStyles = makeStyles(theme => ({
 
 const Dashboard = props => {
   const classes = useStyles();
+  const { products, isLoading } = props;
 
   return (
     <div className={classes.root}>
       <Navigation />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
+        {(!products || isLoading) && <LinearProgress color="secondary" />}
         <Container maxWidth="lg" className={classes.container}>
           <ProductRouter {...props} />
         </Container>
@@ -42,6 +46,8 @@ const Dashboard = props => {
 const mapStateToProps = state => {
   return {
     uid: state.firebase.auth.uid,
+    products: state.firestore.ordered.products,
+    isLoading: state.products.isLoading,
   };
 };
 

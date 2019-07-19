@@ -8,7 +8,7 @@ import { useStyles } from '../auth/authStyles';
 
 const ProductForm = props => {
   const classes = useStyles();
-  const { update, addProduct, categoryName, productById } = props;
+  const { update, addProduct, categoryName, productById, isLoading } = props;
 
   const [product, setProduct] = useState({
     name: '',
@@ -16,6 +16,8 @@ const ProductForm = props => {
     serial: '',
     category: '',
   });
+
+  const [error, setError] = useState('');
 
   useEffect(() => {
     if (productById) {
@@ -29,6 +31,17 @@ const ProductForm = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    const { name, model, serial, category } = product;
+    const formIsValid =
+      name.trim() && model.trim() && serial.trim() && category.trim();
+    if (formIsValid) {
+      setError('');
+      return chooseFormAction();
+    }
+    return setError('All Form Fields are Required');
+  };
+
+  const chooseFormAction = () => {
     if (!props.update) {
       addProduct(product);
     } else {
@@ -45,6 +58,7 @@ const ProductForm = props => {
   return (
     <Container component="main" maxWidth="xs">
       <form className={classes.form} onSubmit={handleSubmit} noValidate>
+        {error && <p>{error}</p>}
         <TextField
           variant="outlined"
           margin="normal"
@@ -95,12 +109,14 @@ const ProductForm = props => {
           onChange={inputChange}
           value={product.serial}
         />
+
         <Button
           type="submit"
           fullWidth
           variant="contained"
           color="primary"
           className={classes.submit}
+          disabled={isLoading}
         >
           {update
             ? 'Save Changes'
@@ -114,7 +130,9 @@ const ProductForm = props => {
 };
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    isLoading: state.products.isLoading,
+  };
 };
 
 export default connect(

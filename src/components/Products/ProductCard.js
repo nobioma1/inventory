@@ -23,8 +23,11 @@ const ProductCard = props => {
   const classes = useStyles();
 
   const removeHandler = id => {
-    removeProduct(id);
-    history.push(`${DASHBOARD}/${product.category}`);
+    removeProduct(id).then(res => {
+      if (res) {
+        history.push(`${DASHBOARD}/${product.category}`);
+      }
+    });
   };
 
   return (
