@@ -8,7 +8,7 @@ import { useStyles } from '../auth/authStyles';
 
 const ProductForm = props => {
   const classes = useStyles();
-  const { update, addProduct, categoryName, productById } = props;
+  const { update, addProduct, categoryName, productById, isLoading } = props;
 
   const [product, setProduct] = useState({
     name: '',
@@ -95,12 +95,14 @@ const ProductForm = props => {
           onChange={inputChange}
           value={product.serial}
         />
+
         <Button
           type="submit"
           fullWidth
           variant="contained"
           color="primary"
           className={classes.submit}
+          disabled={isLoading}
         >
           {update
             ? 'Save Changes'
@@ -114,7 +116,9 @@ const ProductForm = props => {
 };
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    isLoading: state.products.isLoading,
+  };
 };
 
 export default connect(

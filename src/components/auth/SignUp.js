@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { signUp } from '../../actions/auth';
 import * as routes from '../Routes/routes';
@@ -13,7 +14,7 @@ import { useStyles } from './authStyles';
 import Header from '../Header';
 
 const SignUp = props => {
-  const { authError, signUp } = props;
+  const { authError, signUp, isLoading } = props;
   const classes = useStyles();
 
   const [firstName, setFirstName] = useState('');
@@ -91,8 +92,16 @@ const SignUp = props => {
             variant="contained"
             color="primary"
             className={classes.submit}
+            disabled={isLoading}
           >
-            Sign Up
+            {isLoading ? (
+              <CircularProgress
+                className={classes.progress}
+                color="secondary"
+              />
+            ) : (
+              'Create Account'
+            )}
           </Button>
           <Grid container justify="center">
             <Grid item>
@@ -109,6 +118,7 @@ const SignUp = props => {
 
 const mapStateToProps = state => {
   return {
+    isLoading: state.auth.isLoading,
     authError: state.auth.error,
   };
 };

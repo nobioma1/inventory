@@ -15,9 +15,11 @@ const UpdateProduct = props => {
   } = props;
 
   const update = product => {
-    console.log(product)
-    updateProduct(params.productId, product);
-    history.push(`${DASHBOARD}/${params.category}`);
+    updateProduct(params.productId, product).then(res => {
+      if (res) {
+        history.push(`${DASHBOARD}/${params.category}`);
+      }
+    });
   };
 
   return (

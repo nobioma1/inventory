@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { signIn } from '../../actions/auth';
 import * as routes from '../Routes/routes';
@@ -14,8 +15,7 @@ import Header from '../Header';
 
 const SignIn = props => {
   const classes = useStyles();
-
-  const { authError, signIn } = props;
+  const { authError, signIn, isLoading } = props;
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -61,14 +61,23 @@ const SignIn = props => {
             value={password}
             autoComplete="current-password"
           />
+
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            disabled={isLoading}
           >
-            Sign In
+            {isLoading ? (
+              <CircularProgress
+                className={classes.progress}
+                color="secondary"
+              />
+            ) : (
+              'Sign In'
+            )}
           </Button>
           <Grid container>
             <Grid item xs>
@@ -90,6 +99,7 @@ const SignIn = props => {
 
 const mapStateToProps = state => {
   return {
+    isLoading: state.auth.isLoading,
     authError: state.auth.error,
   };
 };
