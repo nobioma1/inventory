@@ -18,8 +18,11 @@ const AddProduct = props => {
     if (category) {
       product.category = category;
     }
-    createProduct(product);
-    history.push(`${DASHBOARD}/${product.category}`);
+    createProduct(product).then(res => {
+      if (res) {
+        history.push(`${DASHBOARD}/${product.category}`);
+      }
+    });
   };
 
   return (
