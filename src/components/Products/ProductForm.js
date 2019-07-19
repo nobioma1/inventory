@@ -20,6 +20,12 @@ const ProductForm = props => {
   const [error, setError] = useState('');
 
   useEffect(() => {
+    if (categoryName) {
+      setProduct(prev => ({
+        ...prev,
+        category: categoryName
+      }));
+    }
     if (productById) {
       setProduct(prev => ({
         ...prev,
@@ -27,7 +33,7 @@ const ProductForm = props => {
         updatedAt: new Date(),
       }));
     }
-  }, [productById]);
+  }, [categoryName, productById]);
 
   const handleSubmit = e => {
     e.preventDefault();
