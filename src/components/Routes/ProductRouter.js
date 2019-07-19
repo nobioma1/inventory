@@ -7,6 +7,7 @@ import AddProduct from '../Products/AddProduct';
 import CategoryList from '../CategoryList';
 import ProductList from '../Products/ProductList';
 import UpdateProduct from '../Products/UpdateProduct';
+import Search from '../Search';
 
 const ProductRouter = () => {
   return (
@@ -14,6 +15,7 @@ const ProductRouter = () => {
       <Route exact path={routes.HOME} component={Home} />
       <Route path={routes.ADDPRODUCT} component={AddProduct} />
       <Route path={routes.CATEGORYLIST} component={CategoryList} />
+      <Route path={routes.SEARCH} component={Search} />
       <Route
         exact
         path={`${routes.DASHBOARD}/:category`}
