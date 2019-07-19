@@ -6,6 +6,7 @@ export const AUTH_ERROR = 'ERROR';
 
 export const signIn = credentials => {
   return (dispatch, getState, { getFirebase }) => {
+    dispatch({ type: START_AUTH_ACTION });
     const firebase = getFirebase();
     firebase
       .auth()
@@ -21,6 +22,7 @@ export const signIn = credentials => {
 
 export const signOut = () => {
   return (dispatch, getState, { getFirebase }) => {
+    dispatch({ type: START_AUTH_ACTION });
     const firebase = getFirebase();
     firebase
       .auth()
@@ -33,6 +35,7 @@ export const signOut = () => {
 
 export const signUp = newUser => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
+    dispatch({ type: START_AUTH_ACTION });
     const firebase = getFirebase();
     const firestore = getFirestore();
 
