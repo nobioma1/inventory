@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { createProduct } from '../../actions/product';
 import { DASHBOARD } from '../Routes/routes';
@@ -30,11 +31,13 @@ const AddProduct = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {};
+AddProduct.propTypes = {
+  createProduct: PropTypes.func,
+  history: PropTypes.shape({ shape: PropTypes.string }),
+  location: PropTypes.shape({ push: PropTypes.func }),
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   { createProduct },
 )(AddProduct);
