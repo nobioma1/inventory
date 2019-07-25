@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
@@ -95,6 +96,12 @@ const SignIn = props => {
       </div>
     </Container>
   );
+};
+
+SignIn.propTypes = {
+  authError: PropTypes.string,
+  signIn: PropTypes.func,
+  isLoading: PropTypes.bool,
 };
 
 const mapStateToProps = state => {
