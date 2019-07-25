@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Box from '@material-ui/core/Box';
+import PropTypes from 'prop-types';
 
 import Category from './Category';
 import Title from '../Title';
@@ -12,8 +13,7 @@ const CategoryList = props => {
     <React.Fragment>
       <Title title="Categories" />
       <Box display="flex" flexWrap="wrap">
-        {categories && 
-          categories.length > 0 ? (
+        {categories && categories.length > 0 ? (
           categories.map(category => (
             <Category key={category} category={category} />
           ))
@@ -23,6 +23,10 @@ const CategoryList = props => {
       </Box>
     </React.Fragment>
   );
+};
+
+CategoryList.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.string),
 };
 
 const getUniqueCategories = products => {
