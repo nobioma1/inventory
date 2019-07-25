@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import { SIGNIN } from './routes';
 
 const PrivateRoute = props => {
   const { auth, component: Component, ...rest } = props;
-
   return (
     <Route
       {...rest}
@@ -18,6 +19,11 @@ const PrivateRoute = props => {
       }}
     />
   );
+};
+
+PrivateRoute.propTypes = {
+  auth: PropTypes.object,
+  component: PropTypes.func
 };
 
 const mapStateToProps = state => {
