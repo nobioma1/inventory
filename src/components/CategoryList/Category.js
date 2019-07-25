@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Grid from '@material-ui/core/Grid';
@@ -22,8 +23,8 @@ const useStyles = makeStyles(theme => ({
   },
   link: {
     color: 'dodgerblue',
-    textDecoration: 'none'
-  }
+    textDecoration: 'none',
+  },
 }));
 
 const Category = props => {
@@ -51,6 +52,10 @@ const Category = props => {
       </Paper>
     </Grid>
   );
+};
+
+Category.propTypes = {
+  category: PropTypes.string,
 };
 
 export default Category;

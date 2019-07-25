@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { makeStyles } from '@material-ui/core/styles';
@@ -49,6 +50,11 @@ const mapStateToProps = state => {
     products: state.firestore.ordered.products,
     isLoading: state.products.isLoading,
   };
+};
+
+Dashboard.propTypes = {
+  products: PropTypes.array,
+  isLoading: PropTypes.bool,
 };
 
 export default compose(

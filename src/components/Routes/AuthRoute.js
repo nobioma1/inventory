@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import {HOME} from './routes';
 
 const AuthRoute = props => {
@@ -20,6 +22,10 @@ const AuthRoute = props => {
   );
 };
 
+AuthRoute.propTypes = {
+  auth: PropTypes.object,
+  component: PropTypes.func
+};
 
 const mapStateToProps = state => {
   return {

@@ -63,7 +63,7 @@ const ProductList = ({ categoryProducts, match, history, removeCategory }) => {
         <DeleteForever /> Delete {category}
       </Button>
 
-      <Box display="flex" flexWrap="wrap">
+      <Box display="flex" flexwrap="wrap">
         {categoryProducts.length > 0 ? (
           categoryProducts.map(product => (
             <ProductCard key={product.id} product={product} history={history} />

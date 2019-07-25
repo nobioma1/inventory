@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import ProductsTable from '../Products/ProductsTable';
@@ -14,6 +15,11 @@ const Recent = props => {
     </Grid>
   );
 };
+
+Recent.propTypes = {
+  products: PropTypes.array,
+};
+
 
 const mapStateToProps = state => {
   const {

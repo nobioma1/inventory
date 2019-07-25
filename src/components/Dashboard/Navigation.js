@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -83,13 +84,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Navigation = props => {
+  const { signOut, user } = props;
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-  
+
   const handleDrawerClose = () => {
     setOpen(false);
   };
@@ -122,8 +124,8 @@ const Navigation = props => {
           >
             InTrack
           </Typography>
-          <Button onClick={props.signOut} color="inherit">
-            {props.user.firstName}, logout
+          <Button onClick={signOut} color="inherit">
+            {user.firstName}, logout
           </Button>
         </Toolbar>
       </AppBar>
@@ -146,6 +148,14 @@ const Navigation = props => {
       </Drawer>
     </div>
   );
+};
+
+Navigation.propTypes = {
+  signOut: PropTypes.func,
+  user: PropTypes.shape({
+    firstName: PropTypes.string,
+    isLoaded: PropTypes.bool
+  }),
 };
 
 const mapStateToProps = state => {
