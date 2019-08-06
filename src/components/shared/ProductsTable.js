@@ -45,7 +45,7 @@ const ProductsTable = props => {
               <TableCell>Product Name</TableCell>
               <TableCell>Product Model</TableCell>
               <TableCell>Product Category</TableCell>
-              <TableCell>Product Serial</TableCell>
+              <TableCell>Number of Products</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -55,7 +55,15 @@ const ProductsTable = props => {
                   <TableCell>
                     {Moment(product.createdAt.toDate()).format('Do MMMM YY')}
                   </TableCell>
-                  <TableCell>{product.name}</TableCell>
+                  <TableCell>
+                    <Link
+                      to={`${DASHBOARD}/${product.name}/${product.id}`}
+                      className={classes.link}
+                    >
+                      <Launch />
+                      {product.name}
+                    </Link>
+                  </TableCell>
                   <TableCell>{product.model}</TableCell>
                   <TableCell>
                     <Link
@@ -66,8 +74,7 @@ const ProductsTable = props => {
                       {product.category}
                     </Link>
                   </TableCell>
-                  <TableCell>{product.serial}</TableCell>
-                  <TableCell>{product.amount}</TableCell>
+                  <TableCell>{product.serials.length}</TableCell>
                 </TableRow>
               ))
             ) : (
