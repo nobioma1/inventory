@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { signIn } from '../../actions/auth';
 import * as routes from '../Routes/routes';
 import { useStyles } from './authStyles';
 import Header from '../Header';
+import FormButton from '../shared/FormButton';
+import Link from '../shared/Link';
 
 const SignIn = props => {
   const classes = useStyles();
@@ -62,35 +61,10 @@ const SignIn = props => {
             value={password}
             autoComplete="current-password"
           />
-
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            disabled={isLoading}
-          >
-            {isLoading ? (
-              <CircularProgress
-                className={classes.progress}
-                color="secondary"
-              />
-            ) : (
-              'Sign In'
-            )}
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link className={classes.link} to="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link className={classes.link} to={routes.SIGNUP} variant="body2">
-                Don't have an account?
-              </Link>
-            </Grid>
+          <FormButton isLoading={isLoading} text="SignIn" />
+          <Grid container justify="space-between">
+            <Link text="Forgot Password?" to="/" />
+            <Link text="Don't Have an Account?" to={routes.SIGNUP} />
           </Grid>
         </form>
       </div>
