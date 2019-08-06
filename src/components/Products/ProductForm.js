@@ -3,18 +3,23 @@ import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 
 import { useStyles } from '../auth/authStyles';
+import FormButton from '../shared/FormButton';
+import SerialsList from '../shared/SerialsList';
 
 const ProductForm = props => {
   const classes = useStyles();
   const { update, addProduct, categoryName, productById, isLoading } = props;
 
+  const [serial, setSerial] = useState('');
   const [product, setProduct] = useState({
     name: '',
     model: '',
-    serial: '',
+    serials: [],
     category: '',
+    description: '',
   });
 
   const [error, setError] = useState('');
@@ -23,7 +28,7 @@ const ProductForm = props => {
     if (categoryName) {
       setProduct(prev => ({
         ...prev,
-        category: categoryName
+        category: categoryName,
       }));
     }
     if (productById) {
@@ -37,9 +42,8 @@ const ProductForm = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const { name, model, serial, category } = product;
-    const formIsValid =
-      name.trim() && model.trim() && serial.trim() && category.trim();
+    const { name, model, category } = product;
+    const formIsValid = name.trim() && model.trim() && category.trim();
     if (formIsValid) {
       setError('');
       return chooseFormAction();
@@ -59,6 +63,16 @@ const ProductForm = props => {
     const name = target.name;
     const value = target.value;
     setProduct(prev => ({ ...prev, [name]: value }));
+  };
+
+  const addSerial = () => {
+    if (serial.length > 2) {
+      setSerial('');
+      setProduct(prev => ({
+        ...prev,
+        serials: [...prev.serials, serial],
+      }));
+    }
   };
 
   return (
@@ -89,6 +103,17 @@ const ProductForm = props => {
           onChange={inputChange}
           value={product.model}
         />
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          id="description"
+          label="Description"
+          name="description"
+          onChange={inputChange}
+          value={product.description}
+        />
         {!categoryName && (
           <TextField
             variant="outlined"
@@ -112,24 +137,32 @@ const ProductForm = props => {
           label="Product Serial"
           name="serial"
           autoComplete="serial"
-          onChange={inputChange}
-          value={product.serial}
+          value={serial}
+          onChange={e => setSerial(e.target.value)}
         />
+        <Grid container justify="flex-end">
+          <Button
+            size="small"
+            variant="outlined"
+            color="primary"
+            onClick={addSerial}
+          >
+            Add Serial
+          </Button>
+        </Grid>
 
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          color="primary"
-          className={classes.submit}
-          disabled={isLoading}
-        >
-          {update
-            ? 'Save Changes'
-            : categoryName
-            ? `Add New to ${categoryName}`
-            : 'Add New'}
-        </Button>
+        <SerialsList serials={product.serials} />
+
+        <FormButton
+          isLoading={isLoading}
+          text={
+            update
+              ? 'Save Changes'
+              : categoryName
+              ? `Add New to ${categoryName}`
+              : 'Add New'
+          }
+        />
       </form>
     </Container>
   );
