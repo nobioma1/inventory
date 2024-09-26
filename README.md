@@ -1,7 +1,5 @@
 # Inventory App - InTrack
 
-https://intrack.netlify.com/
-
 This is a web application. User can create account, add, read, update or delete inventory item, and keep track of products.
 
 ## Getting Started
